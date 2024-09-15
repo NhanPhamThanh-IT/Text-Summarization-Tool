@@ -20,6 +20,18 @@
             font-family: Arial, sans-serif;
             color: #333;
         }
+        .custom-button {
+            padding-left: 5px;
+            padding-right: 5px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            border: solid 2px ;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .file-input {
+            display: flex
+        }
     </style>
 </head>
 <body>
@@ -28,8 +40,16 @@
             <h1 align="center">Welcome To Documents Summarize</h1>
             <div class="text-box">
                 <form method="POST" action="/summarize" align="center">
-                    <textarea name="text" rows="10" placeholder="Paste documents here" align="center" style="width:100%"></textarea><br><br>
-                    <input type="submit" value="Summarize"><br>
+                    <textarea name="text" rows="10" placeholder="Paste documents here" align="center" style="width:99%"></textarea><br><br>
+                    <input type="submit" value="Summarize" class="custom-button">
+                </form>
+                <br><p align="center"><strong>Alternatively, you can choose from other methods to input your data</strong></p>
+                <form action="/upload" method="POST" enctype="multipart/form-data"></form>
+                    <div align="center">
+                        <label for="file"></label>
+                        <input type="file" id="file" class="file-input" name="file" style="display: inline-block; vertical-align: middle;">
+                        <input type="submit" value="Summarize" class="custom-button">
+                    </div>
                 </form>
             </div>
         <!-- </div> -->
