@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>Documents Summarize</title>
+    <style>
+        .container {
+            background-color: #ffffff;
+            color: #f2f2f2;
+            width: device-width;
+        }
+        .text-box {
+            width: device-width;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- <div class="text-box"> -->
+            <h1 align="center">Welcome To Documents Summarize</h1>
+            <form method="POST" action="/summarize" align="center">
+                <textarea name="text" rows="10" placeholder="Paste documents here" align="center" style="width:100%"></textarea><br><br>
+                <input type="submit" value="Summarize"><br>
+            </form>
+        <!-- </div> -->
+        <br>
+        <div align="justify">
+            {% if summary %}
+                <div class="text-box">
+                    <h2 align="center">Summary</h2>
+                    <div class="text-box" style="padding:10px; padding-top:0px; padding-bottom: 0px;">
+                        <p>{{ summary }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
