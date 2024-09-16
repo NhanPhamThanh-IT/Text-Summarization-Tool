@@ -12,7 +12,7 @@
         .text-box {
             width: device-width;
             padding: 10px;
-            border: 2px solid #F5F5F5;
+            border: 1px solid #F5F5F5;
             border-radius: 10px;
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -24,9 +24,10 @@
             padding-right: 5px;
             background-color: #ffffff;
             color: rgb(0, 0, 0);
-            border: solid 2px #4A4A4A;
+            border: solid 1px #4A4A4A;
             cursor: pointer;
             font-weight: bold;
+            border-radius: 10px;
         }
         .file-input {
             display: flex;
@@ -40,7 +41,7 @@
         <h1 align="center">Welcome To Documents Summarize</h1>
         <div class="text-box">
             <form method="POST" action="/summarize-doc" align="center">
-                <textarea name="text" rows="15" placeholder="Paste documents here" style="width:99%; border: 2px solid black; border-radius: 10px; font-family: Arial, sans-serif;"></textarea><br><br>
+                <textarea name="text" rows="15" placeholder="Paste documents here" style="width:99%; border: 1px solid black; border-radius: 10px; font-family: Arial, sans-serif; padding: 0.2cm;"></textarea><br><br>
                 <input type="submit" value="Summarize" class="custom-button">
             </form>
             <p align="center"><strong>Alternatively, you can choose from other methods to input your data</strong></p>
@@ -54,13 +55,13 @@
             {% if summary %}
                 <div class="text-box">
                     <h2 align="center">Summarized Document</h2>
-                    <div class="text-box" style="padding:10px; padding-top:0px; padding-bottom: 0px;">
+                    <div class="text-box" style="padding:10px; padding-top:0px; padding-bottom: 0px; border: black solid 1px">
                         <p>{{ summary }}</p>
                     </div>
                     <br>
                     <form id="summaryForm" method="POST" align="center">
                         <input type="hidden" id="save_local" value="{{ summary }}">
-                        <input type="button" value="Save To Python" class="custom-button" onclick="sendToPython()">
+                        <input type="button" value="Save To Local" class="custom-button" onclick="sendToLocal()">
                     </form>
                 </div>
             {% endif %}
@@ -73,9 +74,8 @@
     </div>
 </body>
 </html>
-
 <script>
-    function sendToPython() {
+    function sendToLocal() {
         let summary = document.getElementById('save_local').value;
         fetch('/save-local', {
             method: 'POST',

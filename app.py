@@ -47,7 +47,7 @@ def summarize_text():
 def save_summary():
     data = request.get_json()
     summary = data.get('summary')
-    with open('summary.txt', 'w') as f:
+    with open(os.path.join('localsaves','summary.txt'), 'w') as f:
         f.write(summary)
     return jsonify({'status': 'success', 'summary_received': summary})
 

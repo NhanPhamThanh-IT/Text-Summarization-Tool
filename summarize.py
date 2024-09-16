@@ -1,6 +1,6 @@
 import spacy
 from collections import Counter
-
+from support import preprocess_text
 
 def score_sentence(sentence : str, word_freq : dict) -> int:
     """
@@ -26,7 +26,6 @@ def score_sentence(sentence : str, word_freq : dict) -> int:
         if token.text.lower() in word_freq:
             score += word_freq[token.text.lower()]
     return score
-
 
 class Summarize:
     def __init__(self, text : str) -> None:
@@ -58,14 +57,13 @@ class Summarize:
             >>> summarizer.word_freq
             Counter({'example': 1, 'text': 1, 'includes': 1, 'several': 1, 'sentences': 1})
         """
-        self.text = text
+        self.text = preprocess_text(text)
         self.doc = spacy.load('en_core_web_sm')(self.text)
         self.sentences = list(self.doc.sents)
         # Take the important keywords which appear in the text.
         self.keywords = [token.text.lower() for token in self.doc if token.pos_ in ('NOUN', 'VERB', 'ADJ') and not token.is_stop]
         # Take the frequency of each important keyword.
         self.word_freq = Counter(self.keywords)
-
 
     def summarizeBySentence(self, num_sentence : int = 3) -> str:
         """
@@ -92,5 +90,5 @@ class Summarize:
         sorted_sentences = sorted(sentence_scores, key=lambda x: x[1], reverse=True)
         top_sentences = sorted_sentences[:num_sentence]
         top_sentences = sorted(top_sentences, key=lambda x: self.sentences.index(x[0]))
-        summary = " ".join(str(sent[0]) for sent in top_sentences)
+        summary = ' '.join(str(sent[0]) for sent in top_sentences)
         return summary
