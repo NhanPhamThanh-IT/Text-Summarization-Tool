@@ -20,6 +20,8 @@ def upload_file():
         return render_template('home.html', error="No file selected for uploading !")
     if file:
         filename = secure_filename(file.filename)
+        if not os.path.exists('uploads'):
+            os.mkdir('uploads')
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         try:
             file.save(file_path)
@@ -47,6 +49,8 @@ def summarize_text():
 def save_summary():
     data = request.get_json()
     summary = data.get('summary')
+    if not os.path.exists('localsaves'):
+        os.mkdir('localsaves')
     with open(os.path.join('localsaves','summary.txt'), 'w') as f:
         f.write(summary)
     return jsonify({'status': 'success', 'summary_received': summary})
