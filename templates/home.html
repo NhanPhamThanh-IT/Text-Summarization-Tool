@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documents Summarize</title>
     <style>
         .container {
             background-color: #ffffff;
             color: #5e4d4d;
-            width: device-width;
+            width: 100%;
         }
         .text-box {
             width: device-width;
@@ -25,12 +25,14 @@
             padding-right: 5px;
             background-color: #ffffff;
             color: rgb(0, 0, 0);
-            border: solid 2px ;
+            border: solid 2px;
             cursor: pointer;
             font-weight: bold;
         }
         .file-input {
-            display: flex
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -39,16 +41,13 @@
         <h1 align="center">Welcome To Documents Summarize</h1>
         <div class="text-box">
             <form method="POST" action="/summarize-doc" align="center">
-                <textarea name="text" rows="10" placeholder="Paste documents here" align="center" style="width:99%"></textarea><br><br>
+                <textarea name="text" rows="10" placeholder="Paste documents here" style="width:99%"></textarea><br><br>
                 <input type="submit" value="Summarize" class="custom-button">
             </form>
-            <br><p align="center"><strong>Alternatively, you can choose from other methods to input your data</strong></p>
-            <form action="/summarize-file" method="POST" enctype="multipart/form-data"></form>
-                <div align="center">
-                    <label for="file"></label>
-                    <input type="file" id="file" class="file-input" name="file" style="display: inline-block; vertical-align: middle;">
-                    <input type="submit" value="Summarize" class="custom-button">
-                </div>
+            <p align="center"><strong>Alternatively, you can choose from other methods to input your data</strong></p>
+            <form action="/summarize-file" method="POST" enctype="multipart/form-data" align="center">
+                <input type="file" id="file" name="file" class="file-input" style="display: inline-block; vertical-align: middle;">
+                <input type="submit" value="Summarize" class="custom-button">
             </form>
         </div>
         <br>
@@ -59,6 +58,11 @@
                     <div class="text-box" style="padding:10px; padding-top:0px; padding-bottom: 0px;">
                         <p>{{ summary }}</p>
                     </div>
+                </div>
+            {% endif %}
+            {% if error %}
+                <div class="text-box" style="color: red;">
+                    <p><strong>{{ error }}</strong></p>
                 </div>
             {% endif %}
         </div>
