@@ -6,26 +6,25 @@
     <title>Documents Summarize</title>
     <style>
         .container {
-            background-color: #ffffff;
-            color: #5e4d4d;
-            width: 100%;
+            background-color: #F5F5F5;
+            color: #000000;
         }
         .text-box {
             width: device-width;
             padding: 10px;
-            border: 2px solid #333;
+            border: 2px solid #F5F5F5;
             border-radius: 10px;
-            background-color: #f9f9f9;
+            background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             font-family: Arial, sans-serif;
-            color: #333;
+            color: #000000;
         }
         .custom-button {
             padding-left: 5px;
             padding-right: 5px;
             background-color: #ffffff;
             color: rgb(0, 0, 0);
-            border: solid 2px;
+            border: solid 2px #4A4A4A;
             cursor: pointer;
             font-weight: bold;
         }
@@ -36,12 +35,12 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color: #F5F5F5;">
     <div class="container">
         <h1 align="center">Welcome To Documents Summarize</h1>
         <div class="text-box">
             <form method="POST" action="/summarize-doc" align="center">
-                <textarea name="text" rows="10" placeholder="Paste documents here" style="width:99%"></textarea><br><br>
+                <textarea name="text" rows="15" placeholder="Paste documents here" style="width:99%; border: 2px solid black; border-radius: 10px; font-family: Arial, sans-serif;"></textarea><br><br>
                 <input type="submit" value="Summarize" class="custom-button">
             </form>
             <p align="center"><strong>Alternatively, you can choose from other methods to input your data</strong></p>
@@ -58,6 +57,11 @@
                     <div class="text-box" style="padding:10px; padding-top:0px; padding-bottom: 0px;">
                         <p>{{ summary }}</p>
                     </div>
+                    <br>
+                    <form id="summaryForm" method="POST" align="center">
+                        <input type="hidden" id="save_local" value="{{ summary }}">
+                        <input type="button" value="Save To Python" class="custom-button" onclick="sendToPython()">
+                    </form>
                 </div>
             {% endif %}
             {% if error %}
@@ -69,3 +73,23 @@
     </div>
 </body>
 </html>
+
+<script>
+    function sendToPython() {
+        let summary = document.getElementById('save_local').value;
+        fetch('/save-local', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ summary: summary }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Summary sent to Python:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>

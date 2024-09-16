@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 import os
 from summarize import Summarize
-from support import ReadFile
+from fileprocess import ReadFile
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
@@ -42,6 +42,14 @@ def summarize_text():
         summarized_content = content.summarizeBySentence(5)
         return render_template('home.html', summary=summarized_content)
     return render_template('home.html', error="Something went wrong !")
+
+@app.route('/save-local', methods=['POST'])
+def save_summary():
+    data = request.get_json()
+    summary = data.get('summary')
+    with open('summary.txt', 'w') as f:
+        f.write(summary)
+    return jsonify({'status': 'success', 'summary_received': summary})
 
 if __name__ == '__main__':
     app.run(debug=True)
