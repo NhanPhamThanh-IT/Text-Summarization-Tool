@@ -28,7 +28,7 @@ def score_sentence(sentence : str, word_freq : dict) -> int:
     return score
 
 
-class summarize:
+class Summarize:
     def __init__(self, text : str) -> None:
         """
         Initialize the summarize object with the given text and prepare necessary data for summarization.
@@ -50,7 +50,7 @@ class summarize:
             word_freq (Counter): A Counter object mapping each keyword to its frequency in the text.
 
         Example:
-            >>> summarizer = summarize("This is an example text. It includes several sentences.")
+            >>> summarizer = Summarize("This is an example text. It includes several sentences.")
             >>> summarizer.sentences
             [This is an example text., It includes several sentences.]
             >>> summarizer.keywords
