@@ -1,6 +1,6 @@
 import spacy
 from collections import Counter
-from support import preprocess_text
+from utils.support import preprocess_text
 
 def score_sentence(sentence : str, word_freq : dict) -> int:
     """

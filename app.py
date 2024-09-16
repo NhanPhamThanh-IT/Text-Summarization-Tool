@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 import os
 from summarize import Summarize
-from fileprocess import ReadFile
+from utils.fileprocess import ReadFile
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'

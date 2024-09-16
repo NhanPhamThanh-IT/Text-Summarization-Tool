@@ -29,7 +29,7 @@
             font-weight: bold;
             border-radius: 10px;
         }
-        .file-input {
+        .input {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -45,10 +45,20 @@
                 <input type="submit" value="Summarize" class="custom-button">
             </form>
             <p align="center"><strong>Alternatively, you can choose from other methods to input your data</strong></p>
-            <form action="/summarize-file" method="POST" enctype="multipart/form-data" align="center">
-                <input type="file" id="file" name="file" class="file-input" style="display: inline-block; vertical-align: middle;">
-                <input type="submit" value="Summarize" class="custom-button">
-            </form>
+            <table align="center">
+                <tr>
+                    <form action="/summarize-file" method="POST" enctype="multipart/form-data" align="center">
+                        <td><input type="file" id="file" name="file" class="input" style="display: inline-block; vertical-align: middle;"></td>
+                        <td><input type="submit" value="Summarize" class="custom-button"></td>
+                    </form>
+                </tr>
+                <tr>
+                    <form action="/summarize-file-url" method="POST" align="center">
+                        <td><input type="url" id="file_url" name="url" class="input" style="display: inline-block; vertical-align: middle;"></td>
+                        <td><input type="submit" value="Summarize" class="custom-button"></td>
+                    </form>
+                </tr>
+            </table>
         </div>
         <br>
         <div align="justify">
