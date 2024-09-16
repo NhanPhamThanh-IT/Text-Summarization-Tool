@@ -10,7 +10,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def home():
     return render_template('home.html')
 
-@app.route('/upload', methods=['POST'])
+@app.route('/summarize-file', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
         return render_template('home.html')
@@ -22,7 +22,7 @@ def upload_file():
         file.save(file_path)
     return render_template('home.html')
 
-@app.route('/summarize', methods=['POST'])
+@app.route('/summarize-doc', methods=['POST'])
 def summarize_text():
     if request.method == 'POST':
         text = request.form['text']
