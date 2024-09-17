@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 import os
+import requests
 from summarize import Summarize
 from utils.fileprocess import ReadFile
+from utils.urlprocess import URL
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
@@ -44,6 +46,24 @@ def summarize_text():
         summarized_content = content.summarizeBySentence(5)
         return render_template('home.html', summary=summarized_content)
     return render_template('home.html', error="Something went wrong !")
+
+@app.route('/summarize-file-url', methods=['POST'])
+def get_online_file():
+    if request.method == 'POST':
+        url = request.form.get('url')
+        if not url:
+            return render_template('home.html', error="Please enter url !")
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            if not os.path.exists('uploads'):
+                os.mkdir('uploads')
+            url = URL(response)
+            content = Summarize(url.content)
+            summarized_content = content.summarizeBySentence(5)
+            return render_template('home.html', summary=summarized_content)
+        except requests.RequestException as e:
+            return render_template('home.html', error="Something went wrong !")
 
 @app.route('/save-local', methods=['POST'])
 def save_summary():
