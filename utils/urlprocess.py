@@ -9,7 +9,9 @@ def get_content(response: requests.Response, type: str) -> str:
         file_path = os.path.join('uploads','temporary.pdf')
         with open(file_path, 'wb') as file:
             file.write(response.content)
-        return read_file_pdf(file_path)
+        content = read_file_pdf(file_path)
+        os.remove(file_path)
+        return content
 
 class URL:
     def __init__(self, response: requests.Response) -> None:
