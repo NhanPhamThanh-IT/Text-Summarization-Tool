@@ -65,7 +65,7 @@ class Summarize:
         # Take the frequency of each important keyword.
         self.word_freq = Counter(self.keywords)
 
-    def summarizeBySentence(self, num_sentence : int = 3) -> str:
+    def summarizeBySentence(self, num_sentences : int = 3) -> str:
         """
         Summarize the text by selecting the top `num_sentence` most important sentences.
 
@@ -88,7 +88,11 @@ class Summarize:
         """
         sentence_scores = [(sent, score_sentence(sent, self.word_freq)) for sent in self.sentences]
         sorted_sentences = sorted(sentence_scores, key=lambda x: x[1], reverse=True)
-        top_sentences = sorted_sentences[:num_sentence]
+        top_sentences = sorted_sentences[:num_sentences]
         top_sentences = sorted(top_sentences, key=lambda x: self.sentences.index(x[0]))
         summary = ' '.join(str(sent[0]) for sent in top_sentences)
         return summary
+    
+    def summarizeByRatio(self, ratio : float = 0.5) -> str:
+        num_sentences = int(len(self.sentences) * ratio)
+        return self.summarizeBySentence(num_sentences)
