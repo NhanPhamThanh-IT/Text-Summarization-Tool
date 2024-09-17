@@ -48,7 +48,7 @@ def summarize_text():
     return render_template('home.html', error="Something went wrong !")
 
 @app.route('/summarize-file-url', methods=['POST'])
-def get_online_file():
+def get_online_documents():
     if request.method == 'POST':
         url = request.form.get('url')
         if not url:
