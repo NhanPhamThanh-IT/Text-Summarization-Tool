@@ -23,14 +23,14 @@ def get_transcript(video_id):
         return f"Error: {str(e)}"
 
 def get_content(response: requests.Response, type: str) -> str:
-    if type=='pdf-file':
+    if type=='pdf':
         file_path = os.path.join('uploads','temporary.pdf')
         with open(file_path, 'wb') as file:
             file.write(response.content)
         content = read_file_pdf(file_path)
         os.remove(file_path)
         return content
-    elif type=='txt-file':
+    elif type=='txt':
         return response.text
     elif type=='youtube-video':
         transcript = get_transcript(urlparse(response.url).query[2:])
@@ -39,5 +39,5 @@ def get_content(response: requests.Response, type: str) -> str:
 class URL:
     def __init__(self, response: requests.Response) -> None:
         self.parsed_url = urlparse(response.url)
-        self.type = 'youtube-video' if '/watch' in self.parsed_url.path else get_file_extension(self.parsed_url.path)[1:] if get_file_extension(self.parsed_url.path)[1:] in ('pdf-file','txt-file') else None
+        self.type = 'youtube-video' if '/watch' in self.parsed_url.path else get_file_extension(self.parsed_url.path)[1:] if get_file_extension(self.parsed_url.path)[1:] in ('pdf','txt') else None
         self.content = get_content(response, self.type)

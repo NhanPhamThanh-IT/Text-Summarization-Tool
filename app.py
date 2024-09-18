@@ -30,7 +30,7 @@ def upload_file():
             file_helper = ReadFile(file_path)
             os.remove(file_path)
             content = Summarize(file_helper.content)
-            summarized_content = content.summarizeBySentence(5)
+            summarized_content = content.summarizeByRatio()
             return render_template('home.html', summary=summarized_content)
         except Exception as e:
             return render_template('home.html', error=f"An error occurred: {str(e)}")
@@ -43,7 +43,7 @@ def summarize_text():
         if not text:
             return render_template('home.html', error="Please enter some text to summarize !")
         content = Summarize(text)
-        summarized_content = content.summarizeBySentence(5)
+        summarized_content = content.summarizeByRatio()
         return render_template('home.html', summary=summarized_content)
     return render_template('home.html', error="Something went wrong !")
 
@@ -60,7 +60,7 @@ def get_online_documents():
                 os.mkdir('uploads')
             url = URL(response)
             content = Summarize(url.content)
-            summarized_content = content.summarizeBySentence(5)
+            summarized_content = content.summarizeByRatio()
             return render_template('home.html', summary=summarized_content)
         except requests.RequestException as e:
             return render_template('home.html', error="Something went wrong !")

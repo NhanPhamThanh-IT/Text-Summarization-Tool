@@ -93,6 +93,6 @@ class Summarize:
         summary = ' '.join(str(sent[0]) for sent in top_sentences)
         return summary
     
-    def summarizeByRatio(self, ratio : float = 0.5) -> str:
+    def summarizeByRatio(self, ratio : float = 0.7) -> str:
         num_sentences = int(len(self.sentences) * ratio)
         return self.summarizeBySentence(num_sentences)
