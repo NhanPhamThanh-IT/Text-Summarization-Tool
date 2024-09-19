@@ -39,10 +39,9 @@ If you have any questions, please reach out via email: [ptnhanit230104@gmail.com
 ## References
 
 <strong>
-Spacy module documents
+spacy module documents
 
 - <a href='https://spacy.io/'>Industrial-Strength Natural Language Processing in Python</a>
-</strong>
 - <a href='https://github.com/explosion/spaCy'>explosion - 
 spaCy - Industrial-strength Natural Language Processing (NLP) in Python</a>
 
@@ -51,5 +50,22 @@ Flask module documents
 - <a href='https://flask.palletsprojects.com/en/3.0.x/'>Welcome to Flask — Flask Documentation (3.0.x)</a>
 - <a href='https://pypi.org/project/Flask/'>Flask</a>
 - <a href='https://github.com/pallets/flask'>pallets - flask - The Python micro framework for building web applications</a>
+
+youtube-transcript-api module documents
+
+- <a href='https://pypi.org/project/youtube-transcript-api/'>youtube-transcript-api 0.6.2</a>
+
+PyMuPDF module documents
+
+- <a href='https://pymupdf.readthedocs.io/en/latest/'>PyMuPDF 1.24.10 documentation</a>
+- <a href='https://github.com/pymupdf/PyMuPDF'>pymupdf - PyMuPDF</a>
+- <a href='https://pypi.org/project/PyMuPDF/'>PyMuPDF 1.24.10</a>
+
+python-docx module documents
+
+- <a href='https://python-docx.readthedocs.io/en/latest/'>python-docx — python-docx 1.1.2 documentation</a>
+- <a href='https://pypi.org/project/python-docx/'>python-docx 1.1.2</a>
+
+</strong>
 
 </div>
