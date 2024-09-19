@@ -56,7 +56,18 @@
             font-weight: bold;
             font-size: 14;
         }
-        
+        .error-box {
+            width: device-width;
+            padding: 5px;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            color: #000000;
+            font-weight: bold;
+            font-size: 14;
+        }
     </style>
 </head>
 <body style="background-color: #F5F5F5;">
@@ -77,7 +88,7 @@
                 </tr>
                 <tr>
                     <form action="/summarize-file-url" method="POST" align="center">
-                        <td><input type="url" id="file_url" name="url" class="input" placeholder="Paste URL here" style="width: 95%; border: solid 1px black; border-radius: 10px; padding: 5px;"></td>
+                        <td><input type="url" id="file_url" name="url" class="input" placeholder="Paste URL here" style="text-align: center; width: 95%; border: solid 1px #F5F5F5; border-radius: 10px; padding: 5px; background-color: #F5F5F5; font-weight: bold; color:#919191;"></td>
                         <td><input type="submit" class="summarize-box" value="Send" class="custom-button"></td>
                     </form>
                 </tr>
@@ -99,8 +110,8 @@
                 </div>
             {% endif %}
             {% if error %}
-                <div class="text-box" style="color: red;">
-                    <p><strong>{{ error }}</strong></p>
+                <div class="error-box" style="color: red;">
+                    <p style="text-align: center;"><strong>{{ error }}</strong></p>
                 </div>
             {% endif %}
         </div>

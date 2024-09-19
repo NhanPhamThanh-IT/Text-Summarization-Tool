@@ -52,7 +52,7 @@ def get_online_documents():
     if request.method == 'POST':
         url = request.form.get('url')
         if not url:
-            return render_template('home.html', error="Please enter url !")
+            return render_template('home.html', error="Please enter URL !")
         try:
             response = requests.get(url)
             response.raise_for_status()

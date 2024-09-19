@@ -1,3 +1,4 @@
 flask
 spacy
 pymupdf
+python-docx

@@ -1,5 +1,7 @@
 from typing import Any
 import fitz # PyMuPDF
+import docx # Python-docx
+from docx.opc.exceptions import PackageNotFoundError
 
 def read_file_txt(file_path : str) -> str:
     """
@@ -45,14 +47,46 @@ def read_file_pdf(file_path: str) -> str:
     except Exception as e:
         return f"Error opening file {file_path}: {e} !"
     return all_text
-    
+
+def read_file_docx(file_path : str) -> str:
+    """
+    Reads the content from a .docx file and returns it as a string.
+
+    Args:
+        file_path (str): The path to the .docx file to be read.
+
+    Returns:
+        str: The text content from the .docx file, or an error message if an exception occurs.
+
+    Exceptions:
+        FileNotFoundError: If the file does not exist.
+        PermissionError: If there are insufficient permissions to access the file.
+        PackageNotFoundError: If the file is not a valid .docx document.
+        OSError: If an OS-related error occurs (e.g., file system issues).
+        Exception: For any other unexpected errors.
+    """
+    try:
+        doc = docx.Document(file_path)
+        full_text = [paragraph.text for paragraph in doc.paragraphs]
+        return '\n'.join(full_text)
+    except FileNotFoundError:
+        return "Error: File not found. Please check the file path."
+    except PermissionError:
+        return "Error: Permission denied. Please check the file permissions."
+    except PackageNotFoundError:
+        return "Error: The file is not a valid .docx document."
+    except OSError as e:
+        return f"Error: An OS error occurred: {e}"
+    except Exception as e:
+        return f"An unexpected error occurred: {e}"
+
 def read_file(path : str, extension : str) -> str:
     """
     Reads the content of a file based on its extension.
 
     Args:
         path (str): The path to the file.
-        extension (str): The file extension, e.g., 'txt' or 'pdf'.
+        extension (str): The file extension, e.g., 'txt', 'pdf' or 'docx'.
 
     Returns:
         str: The content of the file if successful, or None if the extension is not supported.
@@ -61,6 +95,8 @@ def read_file(path : str, extension : str) -> str:
         return read_file_txt(path)
     if extension=='pdf':
         return read_file_pdf(path)
+    if extension=='docx':
+        return read_file_docx(path)
     return None
 
 class ReadFile:
