@@ -36,4 +36,20 @@ This project is licensed under the BSD 3-Clause License. See the <a href='https:
 
 If you have any questions, please reach out via email: [ptnhanit230104@gmail.com]
 
+## References
+
+<strong>
+Spacy module documents
+
+- <a href='https://spacy.io/'>Industrial-Strength Natural Language Processing in Python</a>
+</strong>
+- <a href='https://github.com/explosion/spaCy'>explosion - 
+spaCy - Industrial-strength Natural Language Processing (NLP) in Python</a>
+
+Flask module documents
+
+- <a href='https://flask.palletsprojects.com/en/3.0.x/'>Welcome to Flask — Flask Documentation (3.0.x)</a>
+- <a href='https://pypi.org/project/Flask/'>Flask</a>
+- <a href='https://github.com/pallets/flask'>pallets - flask - The Python micro framework for building web applications</a>
+
 </div>

@@ -2,3 +2,4 @@ flask
 spacy
 pymupdf
 python-docx
+youtube-transcript-api
