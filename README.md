@@ -30,7 +30,7 @@ Open your web browser and go to http://127.0.0.1:5000 to access the interface. U
 
 ## License
 
-This project is licensed under the BSD 3-Clause License. See the LICENSE file for more details.
+This project is licensed under the BSD 3-Clause License. See the <a href='https://github.com/NhanPhamThanh-IT/Text-Summarization-Tool/blob/main/LICENSE'>LICENSE file for more details.</a>
 
 ## Contact
 
